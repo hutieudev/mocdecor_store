@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trình tạo collage ảnh Moc Decor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Tự ghép ảnh thành collage</h1>
+      <p>
+        Tải ảnh của bạn lên, chọn bố cục mong muốn và ứng dụng sẽ tự động ghép
+        thành một collage đẹp mắt. Bạn có thể tải về collage dưới dạng ảnh PNG
+        chất lượng cao.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel--uploader">
+        <h2>Tải ảnh</h2>
+        <div id="dropArea" class="drop-area" role="button" tabindex="0">
+          <input
+            id="fileInput"
+            class="drop-area__input"
+            type="file"
+            accept="image/*"
+            multiple
+          />
+          <div class="drop-area__content">
+            <svg
+              aria-hidden="true"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 5v14M5 12h14M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"
+              ></path>
+              <path d="m15 3 6 6-6-6Zm0 0v4a2 2 0 0 0 2 2h4"></path>
+            </svg>
+            <p>Kéo thả hoặc bấm để chọn ảnh (hỗ trợ nhiều ảnh cùng lúc)</p>
+          </div>
+        </div>
+        <p class="hint">
+          Ứng dụng hỗ trợ JPG, PNG, GIF và WEBP. Kích thước ảnh càng lớn thì
+          collage xuất ra càng sắc nét.
+        </p>
+
+        <div id="thumbList" class="thumbnails" aria-live="polite"></div>
+      </section>
+
+      <section class="panel panel--controls">
+        <h2>Tùy chỉnh collage</h2>
+        <div class="control-grid">
+          <label class="field">
+            <span>Bố cục</span>
+            <select id="layoutSelect">
+              <option value="auto">Tự động</option>
+              <option value="grid">Lưới vuông</option>
+              <option value="horizontal">Ngang</option>
+              <option value="vertical">Dọc</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Nền</span>
+            <input id="backgroundInput" type="color" value="#ffffff" />
+          </label>
+
+          <label class="field">
+            <span>Khoảng cách ô (px)</span>
+            <input id="gapRange" type="range" min="0" max="48" value="16" />
+            <output id="gapValue" for="gapRange">16</output>
+          </label>
+
+          <label class="field">
+            <span>Chiều rộng ảnh xuất (px)</span>
+            <input
+              id="widthInput"
+              type="number"
+              min="600"
+              max="2400"
+              step="50"
+              value="1400"
+            />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="shuffleButton" type="button" class="button">
+            Trộn thứ tự
+          </button>
+          <button id="clearButton" type="button" class="button button--ghost">
+            Xóa tất cả
+          </button>
+        </div>
+
+        <section class="preview">
+          <header class="preview__header">
+            <h3>Xem trước &amp; tải về</h3>
+            <button id="downloadButton" type="button" class="button" disabled>
+              Tải về PNG
+            </button>
+          </header>
+          <p id="emptyState" class="empty-state">
+            Chưa có ảnh nào. Hãy tải ảnh lên để xem trước collage.
+          </p>
+          <canvas id="collageCanvas" width="1400" height="900" hidden></canvas>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Mẹo: bạn có thể kéo để sắp xếp lại thứ tự ảnh trong danh sách bên trái,
+        hoặc nhấn nút “Trộn thứ tự” để ứng dụng chọn ngẫu nhiên.
+      </p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
